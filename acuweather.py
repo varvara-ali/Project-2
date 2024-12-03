@@ -28,4 +28,43 @@ def lock_key_by_cords(latitude, longitude):
         }
 # наверно есть какой-то смысл почему у них код города, а не название  Хотя повторы..
 
-print(lock_key_by_cords(40.7128,-74.0060))
+# Получение погоды по ключу, который получили выще
+def get_weather(location_key):
+    params = {
+        "apikey": api_key,
+        "details": True,
+        'metric': True
+    }
+    url = f'http://dataservice.accuweather.com/forecasts/v1/daily/1day/{location_key}'
+    response = requests.get(url, params=params)
+    return response.json()
+
+
+def main():
+    # Возьму в качестве примера Тулу
+    latitude = 54.1961
+    longitude = 37.6182
+    result = lock_key_by_cords(latitude, longitude)
+
+    if result['success']:
+        location_key = result['key']
+        weather = get_weather(location_key)
+        weather_json = {
+            'cord': f"{latitude}; {longitude}",
+            'date': datetime.now().strftime("%d-%m-%Y"),
+            'temperature': int(
+                (weather['DailyForecasts'][0]['Temperature']['Minimum']['Value'] +
+                 weather['DailyForecasts'][0]['Temperature']['Maximum']['Value'])/2),
+            'relative_humidity': int(weather['DailyForecasts'][0]['Day']['RelativeHumidity']['Average']),
+            'precipitation_probability': int(weather['DailyForecasts'][0]['Day']['PrecipitationProbability']),
+            'wind_speed': int(weather['DailyForecasts'][0]['Day']['Wind']['Speed']['Value'])}
+        print(weather_json)
+        with open('accu.json', 'w') as f:
+            json.dump(weather_json, f, indent=4)
+    else:
+        print(result['error'])
+
+
+if __name__ == '__main__':
+    main()
+
