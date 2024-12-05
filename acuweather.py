@@ -76,10 +76,6 @@ def weather_quality(weather):
         bad_conditions.append(f"Скорость ветра слишком большая: {weather['wind_speed']} метров в секунду")
     if weather['precipitation_probability'] > 70:
         bad_conditions.append(f"Вероятность выпадения осадков слишком высока: {weather['precipitation_probability']}%")
-    if weather['visibility'] < 1000:
-        bad_conditions.append(f"Слишком низкая видимость: {weather['visibility']} метров")
-    if weather['surface_pressure'] > 1500:
-        bad_conditions.append(f"Слишком большое давление: {weather['surface_pressure']} Па")
     if weather['relative_humidity'] > 80:
         bad_conditions.append(f"Слишком большая влажность: {weather['relative_humidity']}%")
 
