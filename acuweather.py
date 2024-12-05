@@ -4,12 +4,12 @@ from datetime import datetime
 
 api_key = "YAXJ2BgVH2LFs9nH0O9WZFYUjfkV4nXm"
 
-# Полученим ключ для определения  кода города по координатам
+# Полученим ключ для определения кода города по координатам
 def lock_key_by_cords(latitude, longitude):
     location_url = "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search"
     params = {
         "apikey": api_key,
-        "q": f"{latitude},{longitude}"  # Например, "40.7128,-74.0060" для Нью-Йорка
+        "q": f"{latitude},{longitude}"
     }
     response = requests.get(location_url, params=params)
     response = response.json()

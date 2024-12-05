@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Прогноз погоды по названию города</title>
+</head>
+<body>
+    <h1>Прогноз погоды в городе</h1>
+    {% if error %}
+    <h2>Ошибка: {{ error }}</h2>
+    {% endif %}
+    <form action="weather_by_city" method="post">
+        <label for="city_name">Введите название города:</label>
+        <input type="text" id="city_name" name="city_name" required>
+        <br>
+        <button type="submit">Узнать</button>
+    </form>
+</body>
+</html>
