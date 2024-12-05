@@ -4,5 +4,8 @@
     "temperature": -4,
     "relative_humidity": 73,
     "precipitation_probability": 0,
-    "wind_speed": 11
+    "wind_speed": 11,
+    "bad_condition": [
+        "\u0422\u0435\u043c\u043f\u0435\u0440\u0430\u0442\u0443\u0440\u0430 \u0441\u043b\u0438\u0448\u043a\u043e\u043c \u043d\u0438\u0437\u043a\u0430\u044f: -4"
+    ]
 }
