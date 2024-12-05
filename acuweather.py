@@ -3,8 +3,8 @@ import json
 from datetime import datetime
 from pprint import pprint
 
-api_key = "YAXJ2BgVH2LFs9nH0O9WZFYUjfkV4nXm"
-
+# api_key = "YAXJ2BgVH2LFs9nH0O9WZFYUjfkV4nXm"
+api_key = "NRsCPXZ9aYVBjl28TqxjvfWZ1xhA8Occ"
 
 # Оценка погодных условий
 def weather_quality(weather):

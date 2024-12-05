@@ -21,9 +21,7 @@ def weather_by_cords():
         latitude = form['latitude']
         longitude = form['longitude']
         print(latitude, longitude)
-        loc_key = acuweather.lock_key_by_cords(latitude, longitude)
-        print(loc_key)
-        data = acuweather.get_weather(loc_key['key'])
+        data = acuweather.get_weather(latitude, longitude)
         print(data)
         if data['success']:
             weather = data['weather']
@@ -35,4 +33,4 @@ def weather_by_cords():
             return render_template('weather_by_cords.html', error=error)
 
 if __name__ == '__main__':
-    site.run(debug=True)
+    site.run(port=8000, debug=True)

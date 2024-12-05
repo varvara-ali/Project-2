@@ -15,13 +15,7 @@
 </head>
 <body>
     {% for weather in weather_list %}
-        <h1>Погодные данные в
-            {% if weather.name  %}
-            {{weather.name}}
-            {% else %}
-            {{weather.cords}}
-            {% endif %}
-        </h1>
+        <h1>Погодные данные в искомых точках</h1>
         <h2>
                 {% if not weather.bad_condition %}
                     Погода подходящая
@@ -38,8 +32,6 @@
             <div><strong>Температура:</strong> {{ weather.temperature }}°C</div>
             <div><strong>Относительная влажность:</strong> {{ weather.relative_humidity }}%</div>
             <div><strong>Вероятность осадков:</strong> {{ weather.precipitation_probability }}%</div>
-            <div><strong>Атмосферное давление:</strong> {{ weather.surface_pressure }} гПа</div>
-            <div><strong>Видимость:</strong> {{ weather.visibility }} метров</div>
             <div><strong>Скорость ветра:</strong> {{ weather.wind_speed }} км/ч</div>
 
         </div>
