@@ -34,7 +34,12 @@ def lock_key_by_cords(latitude, longitude):
     }
     response = requests.get(location_url, params=params)
     response = response.json()
-
+    pprint(response)
+    if not response:
+        return {
+            'success': False,
+            'error': "Ошибка в получении координат"
+        }
     code = response.get('Code')
     if code == 'ServiceUnavailable':
         return {
