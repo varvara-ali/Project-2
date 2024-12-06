@@ -1,6 +1,4 @@
-from os import access
-
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, render_template
 import acuweather
 
 site = Flask(__name__)
@@ -9,7 +7,6 @@ site = Flask(__name__)
 @site.route('/')
 def main_page():
     return render_template('main.html')
-
 
 
 # Получим погоду по координатам
@@ -40,9 +37,6 @@ def weather_by_city():
         data = request.form
         city_name = data['city_name']
         city_key = acuweather.get_cords(city_name)
-
-
-
         if city_key:
             data = acuweather.get_weather(city_key, city_name)
             if data['success']:
@@ -86,8 +80,6 @@ def weather_on_route():
                     error = f"Указанный город не найден"
                     return render_template('get_weather.html', error=error)
             # Получение погоды через координаты
-
-
 
             elif loc_type == 'coordinates':
                 latitude = float(form.get(f'latitude{route_point}'))

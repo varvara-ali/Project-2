@@ -3,10 +3,8 @@ import json
 from datetime import datetime
 from pprint import pprint
 
-from geopy.geocoders import Nominatim
 
-# api_key = "YAXJ2BgVH2LFs9nH0O9WZFYUjfkV4nXm"
-api_key = "ictE4TEiYBIjKOkZsZyF3GG8dcGeDI3U"
+api_key = "YAXJ2BgVH2LFs9nH0O9WZFYUjfkV4nXm"
 
 # Оценка погодных условий
 def weather_quality(weather):
@@ -55,6 +53,7 @@ def lock_key_by_cords(latitude, longitude):
         }
 # наверно есть какой-то смысл почему у них код города, а не название  Хотя повторы..
 
+
 # Получение погоды по координатам, используя функцию выше, который получили выще
 def get_weather(location_key, name):
     try:
@@ -84,6 +83,7 @@ def get_weather(location_key, name):
                 'error': f"Проблемы с доступом к api: \n{str(e)}"
                 }
 
+
 def get_cords(city_name):
     try:
         # params = {
@@ -105,15 +105,15 @@ def main():
     # Возьму в качестве примера Тулу
     latitude = 54.1961
     longitude = 37.6182
-    # loc_key = lock_key_by_cords(latitude, longitude)
-    # weather_result = get_weather(loc_key['key'], f"{latitude}; {longitude}")
-    # if weather_result['success']:
-    #     weather = weather_result['weather']
-    #     print(weather)
-    #     with open('accu.json', 'w', encoding='utf-8') as f:
-    #         json.dump(weather, f, indent=4)
-    # else:
-    #     print(weather_result['error'])
+    loc_key = lock_key_by_cords(latitude, longitude)
+    weather_result = get_weather(loc_key['key'], f"{latitude}; {longitude}")
+    if weather_result['success']:
+        weather = weather_result['weather']
+        print(weather)
+        with open('accu.json', 'w', encoding='utf-8') as f:
+            json.dump(weather, f, indent=4)
+    else:
+        print(weather_result['error'])
 
     name = "Moscow"
     city_key = get_cords(name)
